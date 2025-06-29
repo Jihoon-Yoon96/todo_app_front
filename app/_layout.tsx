@@ -6,8 +6,9 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import {RecoilRoot} from "recoil";
+// import {RecoilRoot} from "recoil";
 import {useEffect} from "react";
+import "./global.css";
 
 export default function RootLayout() {
     // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -30,14 +31,12 @@ export default function RootLayout() {
   }
 
   return (
-    <RecoilRoot>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack>
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                <Stack.Screen name="+not-found" />
-            </Stack>
-            <StatusBar style="auto" />
-        </ThemeProvider>
-    </RecoilRoot>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+      </ThemeProvider>
   );
 }

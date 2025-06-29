@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {View, Text, TouchableOpacity, StyleSheet, TextInput} from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import { Calendar } from "react-native-calendars";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -75,6 +75,11 @@ const CalendarSortTabs = () => {
     return (
         <GestureHandlerRootView>
             <View style={styles.container}>
+                <TextInput
+                    placeholder="Enter text 444"
+                    className="border border-black-300 rounded-lg p-3 w-72 text-red-700"
+                    // style={styles.test}
+                />
                 {/* 캘린더 */}
                 <Calendar
                     current={"2025-06-22"}
@@ -138,6 +143,7 @@ const CalendarSortTabs = () => {
                         </TouchableOpacity>
                     )}
                 />
+
             </View>
         </GestureHandlerRootView>
     );
@@ -166,6 +172,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     conceptTitle: { fontSize: 16, fontWeight: "bold" },
+    // test: {color:"red", margin: 10, fontSize: 30}
 });
 
 export default CalendarSortTabs;
