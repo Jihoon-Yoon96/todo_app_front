@@ -102,7 +102,7 @@ const CalendarSortTabs = () => {
 
                 {/* 플로팅 버튼 */}
                 <TouchableOpacity
-                    className="absolute bottom-20 right-6 bg-black w-14 h-14 rounded-full justify-center items-center shadow-lg"
+                    className="fixed bottom-5 right-2 bg-black w-14 h-14 rounded-full justify-center items-center shadow-lg"
                     onPress={addBigTodo}
                 >
                     <Plus size={28} color="white" />
