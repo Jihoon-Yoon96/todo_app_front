@@ -91,18 +91,27 @@ const Todo = () => {
             </View>
 
             {/* 투두컨셉 하위 BigTodo 목록 */}
-            <FlatList
-                data={concept.find(tab => tab.id === activeTabId)?.bigTodos || []}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.tag}><Text style={styles.tagText}>{item} +</Text></View>
-                )}
-            />
+            <View className="flex-1">
+                <FlatList
+                    data={concept.find(tab => tab.id === activeTabId)?.bigTodos || []}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => (
+                        <View className="p-3 bg-gray-200 my-1 rounded-lg">
+                            <Text className="text-black">{item} +</Text>
+                        </View>
+                    )}
+                />
+                {/* 투두컨셉 버튼 */}
+                <TouchableOpacity
+                    onPress={() => setModalVisible(true)}
+                    className="absolute bottom-8 right-8 bg-black w-14 h-14 justify-center items-center rounded-full shadow-lg"
+                >
+                    <Text className="text-white text-3xl">+</Text>
+                </TouchableOpacity>
+            </View>
 
-            {/* 투두컨셉 버튼 */}
-            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.addButton}>
-                <Text style={styles.addButtonText}>+</Text>
-            </TouchableOpacity>
+
+
 
             {/* 투두컨셉 추가 모달 */}
             <Modal visible={modalVisible} transparent animationType="slide">

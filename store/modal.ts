@@ -1,45 +1,36 @@
-import {create} from 'zustand'
+import { create } from 'zustand';
 
-interface State{
-    modals: object
-}
-interface Actions{
-    actions: {
-        addModals: (param: object)=>void
-        closeModals: ()=>void
-        resetState: (keys?: Array<keyof State>) => void,
-        openModals: (param: any)=>void
-    }
+interface ModalItem {
+    key: number;
+    close: (result?: any) => void;
+    component: React.ComponentType<any>;
+    props?: any;
 }
 
-const initialModals: State = {
-    modals: []
+interface State {
+    modals: ModalItem[];
 }
-export const useModal = create<State & Actions>((set, get)=>({
+
+interface Actions {
+    addModal: (param: ModalItem) => void;
+    closeModal: () => void;
+    resetState: () => void;
+    openModal: (component: React.ComponentType<any>, props?: any) => Promise<any>;
+}
+
+export const useModal = create<State & Actions>((set, get) => ({
     modals: [],
-    actions: {
-        addModals: (val)=> set((state: any)=>({modals: [...state.modals, val]})),
-        closeModals: ()=> set((state: any)=>({modals: [...state.modals].pop()})),
-        resetState: keys => {
-            // 전체 상태 초기화
-            if (!keys) {
-                set(initialModals)
-                return
-            }
-            // 일부 상태 초기화
-            // keys.forEach(key => {
-            //     set({ [key]: initialModals[key] })
-            // })
-        },
-        openModals: item => {
-            return new Promise(resolve => {
-                item.key = Math.floor(Math.random() * 1000)
-                item.close = function (result: any) {
-                    resolve(result)
-                    get().actions.closeModals()
-                }
-                get().actions.addModals(item)
-            })
-        }
+    addModal: (val) => set((state) => ({ modals: [...state.modals, val] })),
+    closeModal: () => set((state) => ({ modals: state.modals.slice(0, -1) })),
+    resetState: () => set({ modals: [] }),
+    openModal: (component, props = {}) => {
+        return new Promise((resolve) => {
+            const key = Math.floor(Math.random() * 10000);
+            const close = (result?: any) => {
+                resolve(result);
+                get().closeModal();
+            };
+            get().addModal({ key, component, props: { ...props, close } });
+        });
     }
-}))
+}));

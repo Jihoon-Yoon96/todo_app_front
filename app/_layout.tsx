@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 // import {RecoilRoot} from "recoil";
 import {useEffect} from "react";
+import ModalRenderer from '@/components/modal/ModalRendered';
 import "../global.css";
 
 export default function RootLayout() {
@@ -37,6 +38,7 @@ export default function RootLayout() {
               <Stack.Screen name="+not-found" />
           </Stack>
           <StatusBar style="auto" />
+          <ModalRenderer />
       </ThemeProvider>
   );
 }
