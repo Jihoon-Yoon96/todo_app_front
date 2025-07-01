@@ -13,7 +13,7 @@ const ModalRenderer = () => {
                     <CommonModal
                         key={modal.key}
                         visible={true}
-                        onClose={()=>closeModal()}
+                        onClose={closeModal}
                     >
                         <ModalComponent {...modal.props} />
                     </CommonModal>

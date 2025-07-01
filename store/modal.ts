@@ -21,7 +21,7 @@ interface Actions {
 export const useModal = create<State & Actions>((set, get) => ({
     modals: [],
     addModal: (val) => set((state) => ({ modals: [...state.modals, val] })),
-    closeModal: () => set((state) => ({ modals: state.modals.slice(0, -1) })),
+    closeModal: () => set((state) => ({ modals: state.modals.filter((el,i)=>i!==state.modals.length-1) })),
     resetState: () => set({ modals: [] }),
     openModal: (component, props = {}) => {
         return new Promise((resolve) => {
