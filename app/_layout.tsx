@@ -8,7 +8,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 // import {RecoilRoot} from "recoil";
 import {useEffect} from "react";
-import "./global.css";
+import "../global.css";
 
 export default function RootLayout() {
     // Prevent the splash screen from auto-hiding before asset loading is complete.
